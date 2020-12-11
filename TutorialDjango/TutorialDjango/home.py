@@ -4,12 +4,12 @@ from .forms import BookForm, GenreForm
 from django.urls import reverse
 
 def index(request):
-    # if not request.user.is_authenticated:
+    if not request.user.is_authenticated:
         return render(request, 'login.html')
-    # else:
-    #     categories = Genre.objects.all()
-    #     books = Book.objects.all()
-    #     return render(request, 'HomePage/index.html', {'categories': categories, 'books': books})
+    else:
+        categories = Genre.objects.all()
+        books = Book.objects.all()
+        return render(request, 'HomePage/index.html', {'categories': categories, 'books': books})
 
 def addbook(request):
         form = BookForm(request.POST or None, request.FILES or None)
